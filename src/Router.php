@@ -48,6 +48,7 @@ class Router
             $decode = $this->decode;
             $ev = new Event(new Collection($decode($data)));
             $class = $this->getJobClassName($ev->getEvent());
+            if(!class_exists($class)) throw new \Exception('No found class: ' . $class);
             $job = new $class;
             return $job->{$this->executor}($ev->getPayload());
         } catch (\Exception $e) {
