@@ -1,0 +1,22 @@
+{
+  "name": "baohan/swoole-job",
+  "description": "A multi-processes worker framework based on Swoole",
+  "require": {
+    "php": "^5.5.9",
+    "baohan/Collection": "1.0.*",
+    "respect/validation": "1.1.*"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "baohan",
+      "email": "baohanddd@gmail.com",
+      "homepage": "https://twitter.com/baohanddd"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "baohan\\SwooleJob\\": "src/"
+    }
+  }
+}
