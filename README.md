@@ -1,10 +1,14 @@
 # swoole-gearman
-A multi-processes worker framework based on Swoole and Gearman
+A job dispatcher based on swoole
 
 Install
 ====
 
-Install `swoole` and `gearman` first.
+Install `swoole` first.
+
+```
+composer update baohan/swoole-job
+```
 
 
 How
@@ -14,19 +18,14 @@ Quick start
 
 ```php
 
-$worker = new \baohan\SwooleGearman\Queue\Worker();
-$worker->addCallback('user::created');
-$worker->addCallback('user::updated');
-
-$router = new \baohan\SwooleGearman\Router();
+$router = new \baohan\SwooleJob\Router();
 $router->setPrefix("\\App\\Job\\");
 $router->setExecutor("execute");
-$router->setDecode(function($payload) {
-    return \json_decode($payload, true);
+$router->setDecode(function($data) {
+    return json_decode($data, true);
 });
-$worker->addRouter($router);
 
-$serv = new \baohan\SwooleGearman\Server($worker);
+$serv = new \baohan\SwooleJob\Server($router);
 $serv->setSwoolePort(9505);
 // custom callback event
 $serv->setEvtStart(function($serv) {
@@ -40,4 +39,3 @@ Configure
 ====
 
 Event callbacks
-
