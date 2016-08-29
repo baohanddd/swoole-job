@@ -104,7 +104,7 @@ class Server
     }
 
     public function onReceive($serv, $fd, $from_id, $data) {
-        $serv->send($fd, json_encode($this->router->callback($data)));
+        $this->router->callback($data);
 
         if(is_callable($this->evt_receive)) {
             call_user_func($this->evt_receive, $serv, $fd, $from_id, $data);
